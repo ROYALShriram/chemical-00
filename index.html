@@ -14,172 +14,64 @@
             --text-secondary: #9ca3af;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg-gradient); color: var(--text-primary); min-height: 100vh; overflow-x: hidden; position: relative; }
 
-        body {
-            background: var(--bg-gradient);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
 
-        /* 3D Animated Canvas Background */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Navigation Bar */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            background: rgba(4, 8, 20, 0.5);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem;
+            background: rgba(4, 8, 20, 0.5); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border);
+            position: sticky; top: 0; z-index: 100;
         }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: 2px; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links .active { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.6); }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-
-        .nav-links a:hover, .nav-links .active {
-            color: #fff;
-            text-shadow: 0 0 8px rgba(255,255,255,0.6);
-        }
-
-        /* Hero Section */
-        header {
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            perspective: 1000px;
-        }
-
+        header { text-align: center; padding: 5rem 2rem 3rem; perspective: 1000px; }
         header h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: 4px;
+            font-size: 3.5rem; font-weight: 900; letter-spacing: 4px;
             background: linear-gradient(135deg, #fff 30%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            transform: translateZ(30px);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;
         }
 
-        header p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
+        /* Slogan Display Panel */
+        .slogan-box {
+            max-width: 600px; margin: 0 auto 2rem; padding: 1rem 2rem;
+            background: rgba(59, 130, 246, 0.05); border: 1px dashed rgba(59, 130, 246, 0.3);
+            border-radius: 12px; min-height: 70px; display: flex; align-items: center; justify-content: center;
+        }
+        .slogan-text {
+            font-size: 1.25rem; font-style: italic; font-weight: 600; color: #60a5fa;
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.3); animation: fadeIn 0.8s ease-in-out;
         }
 
-        /* 3D Neo-Glassmorphism Cards Grid */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
         .grid-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            perspective: 1000px;
+            max-width: 1200px; margin: 0 auto; padding: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;
         }
-
         .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 2.5rem; backdrop-filter: blur(16px); transform-style: preserve-3d;
             transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s, box-shadow 0.3s;
-            transform-style: preserve-3d;
-            cursor: pointer;
-            position: relative;
         }
-
         .card:hover {
             transform: translateY(-10px) rotateX(4deg) rotateY(-4deg) translateZ(10px);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-
-        .card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #fff;
-            transform: translateZ(20px);
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            transform: translateZ(15px);
-        }
-
+        .card h2 { font-size: 1.8rem; margin-bottom: 1rem; color: #fff; }
+        .card p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; }
         .card .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.3s, transform 0.3s;
-            transform: translateZ(25px);
+            display: inline-block; padding: 0.75rem 1.5rem; background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4); color: #fff; text-decoration: none;
+            border-radius: 8px; font-weight: 600; transition: background 0.3s;
         }
+        .card .btn:hover { background: rgba(59, 130, 246, 0.5); }
 
-        .card .btn:hover {
-            background: rgba(59, 130, 246, 0.5);
-            transform: translateZ(30px) scale(1.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.2rem; }
-            .nav-links { gap: 1rem; }
-        }
+        footer { text-align: center; padding: 3rem; color: var(--text-secondary); border-top: 1px solid var(--glass-border); margin-top: 4rem; }
     </style>
 </head>
 <body>
@@ -198,7 +90,9 @@
 
     <header>
         <h1>CHEMICALS IN DAILY LIFE</h1>
-        <p>Explore the hidden molecular world surrounding us, from the compounds in your food to the structures shaping modern technology.</p>
+        <div class="slogan-box">
+            <div class="slogan-text" id="sloganDisplay">Loading chemistry...</div>
+        </div>
     </header>
 
     <div class="grid-container">
@@ -219,15 +113,33 @@
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 CHEMICALS IN DAILY LIFE. All Rights Reserved.
-    </footer>
+    <footer>&copy; 2026 CHEMICALS IN DAILY LIFE.</footer>
 
     <script>
-        // 3D Matrix/Atomic Fluid Canvas Simulation
+        // Slogan Rotator Matrix
+        const slogans = [
+            "🧪 Chemistry: The Hidden Code of Your Daily Routine!",
+            "⚡ From Kitchen to Cosmos – Molecules Matter!",
+            "🌿 Better Living Through Molecular Understanding.",
+            "🧬 Small Molecules, Huge Real-World Impact!",
+            "💧 Every Drop, Grain, and Breath Is Pure Chemistry."
+        ];
+        let sloganIdx = 0;
+        const display = document.getElementById('sloganDisplay');
+        
+        function rotateSlogan() {
+            display.style.animation = 'none';
+            display.offsetHeight; // Trigger reflow layout mechanics
+            display.textContent = slogans[sloganIdx];
+            display.style.animation = 'fadeIn 0.8s ease-in-out';
+            sloganIdx = (sloganIdx + 1) % slogans.length;
+        }
+        setInterval(rotateSlogan, 4000);
+        rotateSlogan();
+
+        // Canvas Particle Pipeline 
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
-
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
@@ -237,72 +149,32 @@
         });
 
         class Particle {
-            constructor() {
-                this.reset();
-            }
+            constructor() { this.reset(); }
             reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.z = Math.random() * 400 + 100; // Depth factor
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.radius = Math.random() * 2 + 1;
+                this.x = Math.random() * width; this.y = Math.random() * height;
+                this.z = Math.random() * 400 + 100; this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4; this.radius = Math.random() * 2 + 1;
                 this.alpha = Math.random() * 0.5 + 0.1;
             }
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                
-                // Boundaries reset
-                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-                    this.reset();
-                }
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
             }
             draw() {
-                // 3D perspective projection scaling
                 const scale = 200 / this.z;
-                const finalRadius = this.radius * scale;
-                
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, finalRadius, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.radius * scale, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(59, 130, 246, ${this.alpha * scale})`;
-                ctx.shadowBlur = 8;
-                ctx.shadowColor = '#3b82f6';
                 ctx.fill();
-                ctx.shadowBlur = 0; // reset
             }
         }
-
-        const particleCount = 75;
-        const particles = Array.from({ length: particleCount }, () => new Particle());
-
+        const particles = Array.from({ length: 60 }, () => new Particle());
         function animate() {
             ctx.clearRect(0, 0, width, height);
-            
-            // Connect close particles with subtle 3D neural grid lines
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - dist/120)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
         animate();
     </script>
+</body>
+</html>
