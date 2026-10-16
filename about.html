@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CHEMICALS IN DAILY LIFE</title>
+    <style>
+        :root {
+            --bg-gradient: radial-gradient(circle at center, #0d1527 0%, #040814 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg-gradient); color: var(--text-primary); min-height: 100vh; }
+
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem;
+            background: rgba(4, 8, 20, 0.5); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border);
+        }
+        .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: 2px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; }
+        .nav-links a:hover, .nav-links .active { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.6); }
+
+        .about-wrap { max-width: 900px; margin: 4rem auto; padding: 0 2rem; }
+        .glass-panel {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 3rem; backdrop-filter: blur(15px); text-align: center;
+        }
+        
+        h1 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #fff; letter-spacing: 1px; }
+        .desc { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 3rem; }
+
+        .team-title { font-size: 1.8rem; color: #3b82f6; font-weight: 700; margin-bottom: 2rem; letter-spacing: 1px; }
+        
+        .team-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;
+        }
+        .member-card {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border);
+            padding: 1.5rem; border-radius: 12px; transition: transform 0.3s;
+        }
+        .member-card:hover {
+            transform: scale(1.05); border-color: rgba(59, 130, 246, 0.3);
+        }
+        .member-name {
+            font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: 0.5px;
+        }
+        .member-role {
+            font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">CHEMICALS IN DAILY LIFE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="chemicals.html">Chemicals</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="about-wrap">
+        <div class="glass-panel">
+            <h1>ABOUT OUR PROJECT</h1>
+            <p class="desc">
+                This platform is dedicated to uncovering the molecular structures that shape our everyday routines. By understanding the chemistry behind everyday objects—from food preservatives to household cleaners—we gain a deeper understanding of safety, technology, and health in the modern world.
+            </p>
+
+            <div class="team-title">PROJECT DEVELOPERS</div>
+            <div class="team-grid">
+                <div class="member-card">
+                    <div class="member-name">ROHAN DATTU ATOLE</div>
+                    <div class="member-role">Research &amp; Core Architecture</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">SHRIRAM KISAN DHEMBARE</div>
+                    <div class="member-role">UI/UX Design Engineering</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">PARTH RAKESH GAIKWAD</div>
+                    <div class="member-role">Data Matrix Implementation</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">ADITYA SANJAY WAGH</div>
+                    <div class="member-role">Quality &amp; Deployment Operations</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
